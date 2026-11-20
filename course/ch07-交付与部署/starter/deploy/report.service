@@ -1,0 +1,18 @@
+[Unit]
+Description=Daily cross-border report pipeline
+After=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/opt/daily-report
+Environment="TZ=Asia/Shanghai"
+# 密钥放 EnvironmentFile，权限 600，不进仓库
+EnvironmentFile=/etc/daily-report/env
+ExecStart=/usr/bin/python3 /opt/daily-report/ops/run_daily.py
+# 超时保护：卡死比失败更糟，因为它会占着下一次的时间窗
+TimeoutStartSec=25min
+# 失败时按退出码分级（0/1/2 的语义见讲义）
+SuccessExitStatus=0
+
+[Install]
+WantedBy=multi-user.target

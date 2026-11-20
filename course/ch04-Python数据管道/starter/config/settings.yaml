@@ -1,0 +1,18 @@
+# 多站点日报管道 · 配置
+# 相对路径一律相对于「项目根目录」（即包含 config/ 的那一层）
+
+data_dir: ../../ch03-数据接入与对账/data/raw
+out_dir: ./output
+log_dir: ./logs
+
+# 站点时区与 ERP 时区的差：北京 UTC+8 → PST UTC-8 = 16 小时
+site_offset_from_bj_hours: -16
+
+thresholds:
+  acos_warn: 0.35          # 广告 ACOS 超过 35% 告警
+  refund_rate_warn: 0.08   # 退款率超过 8% 告警
+  doi_warn: 7              # 库存可售天数低于 7 天告警
+  ad_zero_order_spend_usd: 80   # 搜索词花费 >= 80 且 0 单，进优化清单
+
+# 对账残差容差（美元）。超过就报 ERROR 并以退出码 1 结束
+reconcile_tolerance_usd: 1.00

@@ -1,0 +1,18 @@
+[Unit]
+Description=Run daily report every morning at 08:10 local time
+
+[Timer]
+# 用本地时区思考：业务说的"早会前"是北京时间
+OnCalendar=*-*-* 08:10:00
+# 机器关机错过了，开机后补跑一次（这就是"幂等"的价值）
+Persistent=true
+RandomizedDelaySec=60
+
+[Install]
+WantedBy=timers.target
+
+# 启用：
+#   systemctl daemon-reload
+#   systemctl enable --now report.timer
+# 查看下次执行：
+#   systemctl list-timers report.timer

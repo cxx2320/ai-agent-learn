@@ -1,0 +1,22 @@
+# ---- 运行生成物（可重新生成，不入库）----
+**/output/
+**/out/
+**/logs/
+**/__pycache__/
+*.pyc
+*.pyo
+*.tmp
+*.db-journal
+
+# ---- 本机工具产物 ----
+_acl-report/
+
+# ---- 密钥（样例文件 .env.example 除外）----
+.env
+.env.local
+.env.*.local
+
+# ---- 操作系统 ----
+Thumbs.db
+desktop.ini
+.DS_Store
